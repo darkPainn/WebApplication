@@ -20,6 +20,8 @@ h1{
     color: green;
 }
 #navbar{
+    width: 80%;
+    margin: 30px auto;
     background-color: activeborder;
     padding: 5px;
 }
@@ -35,4 +37,43 @@ li{
 a{
     font-size: 18pt;
     text-decoration: none;
+}
+
+#container{
+    width: 80%;
+    margin: 10px auto;
+    padding: 5px;
+    background-color: white;
+    text-align: center;
+}
+
+
+
+input{
+    display: inline-block;
+    width: 50%;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: yellow;
+    border-radius: 10px;
+    font-size: 16pt;
+    
+}
+
+#registerButton{
+    background-color: orange;
+}
+
+footer{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin-top: 200px;
+    background-color: aliceblue;
+}
+
+.help{
+    color: red;
+    display: block;
 }
