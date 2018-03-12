@@ -1,0 +1,19 @@
+{
+    "name": "etudiant/server-lesson",
+    "description": "none",
+    "type": "protect",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "darkPainn",
+            "email": "sedat_t_2@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload":{
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
