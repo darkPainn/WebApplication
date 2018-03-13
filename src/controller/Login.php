@@ -43,16 +43,14 @@
                     }
                     
                     if(($returnedname === $uname) && ($returnedpass === $upass)){
-                        echo "Login success!";
-                        $newurl = __DIR__ . '/public/index.php';
-                        echo $newurl;
-                        echo "<script> location.href='C:\xampp\htdocs\WebApp\WebApplication\public/index.php'; </script>";
-                        return;
-                        //header("Location:" . __DIR__ . "/../../public/index.php");
+                        echo "<h1>Login success!</h1>";
+                        sleep(1);
+                        
+                        header('Location:' . '' . '__DIR__' . '/../../../public/loggedInIndex.php');
+                        exit;
                     }else{
                         echo "Login failed!";
-                    }
-                    
+                    }  
                 }
                 
                     
