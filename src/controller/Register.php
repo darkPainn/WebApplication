@@ -19,7 +19,7 @@
         <main>
             <div id="container">
                 <h1>Registration Page</h1>
-                <form name="registerForm" action="validateForm.php" method="post">
+                <form name="registerForm" action="validateForm.php" method="post" id="registerForm">
                     <input type="text" placeholder="Your First Name" name="fname">
                     <span class="help" id="fnameHelp"></span>
                     <input type="text" placeholder="Your Last Name" name="lname">
@@ -31,7 +31,8 @@
                     <span class="help" id="p1Help"></span>
                     <input type="password" placeholder="Confirm your password" name="pass2">
                     <span class="help" id="p2Help"></span>
-                    <input type="submit" value="Register" id="registerButton">
+                    <input type="submit" value="Register" class="registerButton">
+                    <input type="reset" value="Reset" class="resetbutton">
                 </form>
             </div>
         </main>

@@ -72,19 +72,23 @@
                 $statement = $connection->prepare($checkquery);
                 $statement->execute();
                 $allLines = $statement->fetchAll();
-                //$usernames = $allLines['username'];
-                var_dump($allLines);
-                
-                $query = "INSERT INTO projectUser(firstName, lastName, username, userMail, userPass) VALUES(\"$fname\", \"$lname\", \"$uname\", \"$mail\", \"$p1\")";
-                $affected = $connection->exec($query);
-        
-                if(!$affected){
-                    echo implode(', ', $connection->errorInfo());
-                }else{
-                    echo 'Success! storing data';
+                $allUserNames = [];
+                foreach ($allLines as $keys => $values){
+                    array_push($allUserNames, $values['username']);
                 }
-        
-                //return;
+                if(!in_array($uname, $allUserNames)){
+                     $query = "INSERT INTO projectUser(firstName, lastName, username, userMail, userPass) VALUES(?, ?, ?, ?, ?)";
+                     $statement = $connection->prepare($query);
+                     $statement->bindParam(1, $fname, PDO::PARAM_STR);
+                     $statement->bindParam(2, $lname, PDO::PARAM_STR);
+                     $statement->bindParam(3, $uname, PDO::PARAM_STR);
+                     $statement->bindParam(4, $mail, PDO::PARAM_STR);
+                     $statement->bindParam(5, $p1, PDO::PARAM_STR);
+                     $statement->execute();
+                     echo "<h1>You have successfully created your account please log in</h1>";
+                }else{
+                    echo "<h1>Username already exists please use login button to log into your account</h1>";
+                }
             }
     
 ?>

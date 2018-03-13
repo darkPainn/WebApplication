@@ -1,7 +1,7 @@
 $(function(){
     //console.log("jquery is ready");
     
-    $("form").submit(function(event){
+    $("#registerForm").submit(function(event){
         event.preventDefault();
         if(fnameflag && lnameflag && unameflag && passflag){
             $(this).unbind('submit').submit();
@@ -28,11 +28,11 @@ $(function(){
         
         if(currentInput.attr("name") === "lname" && currentInput.val().length < 4){
             currentInput.css("background-color", "red");
-            $("#fnameHelp").text("Last name needs to be at leats 4 character long");
+            $("#lnameHelp").text("Last name needs to be at leats 4 character long");
             lnameflag = false;
         }else if(currentInput.attr("name") === "lname" && currentInput.val().length >= 4){
             currentInput.css("background-color", "green");
-            $("#fnameHelp").text("");
+            $("#lnameHelp").text("");
             lnameflag = true;
         }
         
@@ -64,6 +64,15 @@ $(function(){
             passflag = true;
         }
     });
+    
+    $(".resetbutton").on("click", function(){
+        $("input").css("background-color", "");
+        $("span").text("");
+    });
+    
+//    $("#loginform").on("submit", function(event){
+//        event.preventDefault();
+//    });
     
     
     
