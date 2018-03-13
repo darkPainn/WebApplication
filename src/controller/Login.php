@@ -3,6 +3,8 @@
                 include_once __DIR__ . '/init.php';
 
                 $configs = require __DIR__ . '/../../config/app.conf.php';
+                
+                require __DIR__ . '/User.php';
     
                 service\DBConnector::setConfig($configs['db']);
                 $uname = htmlentities($_POST['uname']?? null);
@@ -28,34 +30,29 @@
                         exit(10);
                     }
                     
-                    $query = "SELECT username FROM projectuser";
-                    $statement = $connection->prepare($query);
-                    $statement->execute();
-                    $allLines = $statement->fetchAll();
-                    
-                    $allUserNames = [];
-                    foreach ($allLines as $keys => $values){
-                        array_push($allUserNames, $values['username']);
-                    }   
-                    
-                    if(in_array($uname, $allUserNames)){
-                        $query2 = "SELECT username, userPass FROM projectUser WHERE username=?";
-                        $statement2 = $connection->prepare($query2);
-                        $statement2->bindParam(1, $uname, PDO::PARAM_STR);
-                        $statement2->execute();
-                        $lines = $statement2->fetchAll();
-                        $returnedname = '';
-                        $returnedpass = '';
-                        foreach ($lines as $key => $value){
-                            $returnedname = $value['username'];
-                            $returnedpass = $value['userPass'];
-                        }
-                        if(($returnedname === $uname) && ($returnedpass === $upass)){
-                            echo "Login success!";
-                        }else{
-                            echo "Login failed..";
-                        }
+                    $query2 = "SELECT username, userPass FROM projectUser WHERE username=?";
+                    $statement2 = $connection->prepare($query2);
+                    $statement2->bindParam(1, $uname, PDO::PARAM_STR);
+                    $statement2->execute();
+                    $lines = $statement2->fetchAll();
+                    $returnedname = '';
+                    $returnedpass = '';
+                    foreach ($lines as $key => $value){
+                        $returnedname = $value['username'];
+                        $returnedpass = $value['userPass'];
                     }
+                    
+                    if(($returnedname === $uname) && ($returnedpass === $upass)){
+                        echo "Login success!";
+                        $newurl = __DIR__ . '/public/index.php';
+                        echo $newurl;
+                        echo "<script> location.href='C:\xampp\htdocs\WebApp\WebApplication\public/index.php'; </script>";
+                        return;
+                        //header("Location:" . __DIR__ . "/../../public/index.php");
+                    }else{
+                        echo "Login failed!";
+                    }
+                    
                 }
                 
                     
