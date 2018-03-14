@@ -11,6 +11,11 @@ and open the template in the editor.
 *{
     box-sizing: border-box;
 }
+
+input:focus {
+    outline: none;
+    border: none;
+}
 body{
     background-color: beige; 
     padding: 0;
